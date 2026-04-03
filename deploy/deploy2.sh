@@ -64,22 +64,6 @@ sudo ln -sf \
   /etc/nginx/sites-available/cotuong2.linguagerman.com \
   /etc/nginx/sites-enabled/cotuong2.linguagerman.com
 
-sudo nginx -t && sudo systemctl reload nginx
-
-# ── 6. Certbot SSL (chỉ chạy lần đầu nếu chưa có cert) ──
-if ! sudo certbot certificates 2>/dev/null | grep -q "cotuong2.linguagerman.com"; then
-  echo "[SSL] Issuing certificate for cotuong2.linguagerman.com..."
-  sudo certbot --nginx \
-    -d cotuong2.linguagerman.com \
-    --non-interactive \
-    --agree-tos \
-    --email admin@linguagerman.com \
-    --redirect
-  sudo systemctl reload nginx
-else
-  echo "[SSL] Certificate already exists, skipping."
-fi
-
 # ── Done ─────────────────────────────────────────────────
 echo ""
 echo "======================================================"
